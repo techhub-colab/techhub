@@ -1,16 +1,18 @@
 import { Link, Outlet } from 'react-router';
 import {
   NavigationMenu,
+  NavigationMenuContent,
   NavigationMenuItem,
   NavigationMenuLink,
-  NavigationMenuList
+  NavigationMenuList,
+  NavigationMenuTrigger
 } from '~/components/ui/navigation-menu';
 
 export default function Layout() {
   return (
     <>
-      <header>
-        <NavigationMenu>
+      <header className="sticky top-0 z-999">
+        <NavigationMenu className="justify-between">
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuLink asChild>
@@ -20,6 +22,23 @@ export default function Layout() {
               </NavigationMenuLink>
             </NavigationMenuItem>
             <NavigationMenuItem>
+              <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
+              <NavigationMenuContent>
+                <div className="w-[120px]">
+                  <NavigationMenuLink asChild>
+                    <Link to="#">
+                      My Blogs
+                    </Link>
+                  </NavigationMenuLink>
+                  <NavigationMenuLink asChild>
+                    <Link to="#">
+                      Discover
+                    </Link>
+                  </NavigationMenuLink>
+                </div>
+              </NavigationMenuContent>
+            </NavigationMenuItem>
+            <NavigationMenuItem>
               <NavigationMenuLink asChild>
                 <Link to="/about">
                   About
@@ -27,12 +46,22 @@ export default function Layout() {
               </NavigationMenuLink>
             </NavigationMenuItem>
           </NavigationMenuList>
+          <NavigationMenuList>
+            <NavigationMenuItem>
+              <NavigationMenuLink>
+                Log In
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          </NavigationMenuList>
         </NavigationMenu>
       </header>
-      <main>
-        <Outlet />
+      <main className="flex justify-center">
+        <div className="w-full lg:w-2/3">
+          <Outlet />
+        </div>
       </main>
-      <footer></footer>
+      <footer className="flex flex-col items-center">
+      </footer>
     </>
   );
 }
