@@ -4,5 +4,6 @@ export default [
   layout('routes/layout.tsx', [
     index('routes/home.tsx'),
     route('about', 'routes/about.tsx')
-  ])
+  ]),
+  route('blogs/create', 'routes/blogs/create.tsx')
 ] satisfies RouteConfig;

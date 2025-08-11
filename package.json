@@ -10,6 +10,7 @@
     "lint": "eslint ."
   },
   "dependencies": {
+    "@loadable/component": "^5.16.7",
     "@radix-ui/react-navigation-menu": "^1.2.13",
     "@radix-ui/react-slot": "^1.2.3",
     "@react-router/express": "^7.7.1",
@@ -38,6 +39,7 @@
     "@types/compression": "^1.7.5",
     "@types/express": "^5.0.1",
     "@types/express-serve-static-core": "^5.0.6",
+    "@types/loadable__component": "^5.13.10",
     "@types/morgan": "^1.9.9",
     "@types/node": "^20",
     "@types/react": "^19.1.2",
