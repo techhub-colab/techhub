@@ -26,7 +26,7 @@ export default function Layout() {
               <NavigationMenuContent>
                 <div className="w-[120px]">
                   <NavigationMenuLink asChild>
-                    <Link to="/blogs/create">
+                    <Link to="/blogs/create" target="_blank">
                       New Blog
                     </Link>
                   </NavigationMenuLink>

@@ -1,10 +1,10 @@
 import Cherry from 'cherry-markdown';
 import type { CherryOptions } from 'cherry-markdown/types/cherry';
 import { useCallback, useEffect, useRef, useState } from 'react';
-import 'cherry-markdown/dist/cherry-markdown.css';
-import '~/styles/cherry-markdown.css';
 import { Button } from '~/components/ui/button';
 import { Input } from '~/components/ui/input';
+import 'cherry-markdown/dist/cherry-markdown.css';
+import '~/styles/cherry-markdown.css';
 
 const markdownTemplate = `# Heading 1
 ## Heading 2
