@@ -1,6 +1,7 @@
 import 'react-router';
 import { createRequestHandler } from '@react-router/express';
 import express from 'express';
+import apiRouter from './routers';
 
 declare module 'react-router' {
   interface AppLoadContext {
@@ -9,6 +10,12 @@ declare module 'react-router' {
 }
 
 export const app = express();
+
+// Middlewares
+app.use(express.json());
+
+// API routes
+app.use('/api', apiRouter);
 
 // Suppress error raised by the unhandled Chrome DevTools request
 app.use('/.well-known', (req, res) => {
