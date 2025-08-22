@@ -1,9 +1,13 @@
 import { PrismaClient } from '@/generated/prisma/client.js';
 
+const isProduction = process.env.NODE_ENV === 'production';
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
+
 // noinspection JSUnusedGlobalSymbols,JSUnusedLocalSymbols
 const prisma = globalForPrisma.prisma ||
-  new PrismaClient().$extends({
+  new PrismaClient(isProduction ? undefined : {
+    log: ['query']
+  }).$extends({
     // Extend queries on operations of certain models
     query: {
       user: {
@@ -20,7 +24,7 @@ const prisma = globalForPrisma.prisma ||
     }
   });
 
-if (process.env.NODE_ENV === 'development') {
+if (!isProduction) {
   globalForPrisma.prisma = prisma;
 }
 
