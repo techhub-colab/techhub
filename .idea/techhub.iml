@@ -7,7 +7,8 @@
       <excludeFolder url="file://$MODULE_DIR$/tmp" />
       <excludeFolder url="file://$MODULE_DIR$/.react-router" />
       <excludeFolder url="file://$MODULE_DIR$/generated" />
-      <excludeFolder url="file://$MODULE_DIR$/server/generated" />
+      <excludeFolder url="file://$MODULE_DIR$/server.bak/generated" />
+      <excludeFolder url="file://$MODULE_DIR$/server/src/generated" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
