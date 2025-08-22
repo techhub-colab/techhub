@@ -1,5 +1,19 @@
 import { FromSchema } from 'json-schema-to-ts';
 
+export const UpdateMeRequestSchema = {
+  $id: 'UpdateMeRequestSchema',
+  type: 'object',
+  properties: {
+    username: { type: 'string' },
+    password: { type: 'string' },
+    email: { type: 'string' },
+    bio: { type: 'string' }
+  },
+  additionalProperties: false
+} as const;
+
+export type UpdateMeRequest = FromSchema<typeof UpdateMeRequestSchema>;
+
 export const UserResponseSchema = {
   $id: 'UserResponseSchema',
   type: 'object',
@@ -15,6 +29,7 @@ export const UserResponseSchema = {
     updatedAt: { type: 'string', format: 'date-time' }
   },
   required: ['id', 'uuid', 'username', 'email', 'isActive', 'bio', 'lastLogin', 'createdAt', 'updatedAt'],
+  additionalProperties: false
 } as const;
 
 export type UserResponse = FromSchema<typeof UserResponseSchema>;

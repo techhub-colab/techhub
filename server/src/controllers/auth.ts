@@ -10,14 +10,10 @@ import {
 } from '@/utils/auth.js';
 import { comparePassword, hashPassword } from '@/utils/password.js';
 import prisma from '@/utils/prisma.js';
-import { isValidEmail, isValidPassword, isValidUsername } from '@/utils/validation.js';
 import { FastifyReply, FastifyRequest } from 'fastify';
 
 export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: FastifyReply) => {
   const { username, password, email } = req.body;
-  if (!isValidUsername(username) || !isValidPassword(password) || !isValidEmail(email)) {
-    return res.status(400).send({ message: 'Bad request' });
-  }
 
   try {
     // For now the system can have only two users
@@ -38,7 +34,8 @@ export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: 
     return res.status(201).send(user);
 
   } catch (err) {
-    if (err instanceof Prisma.PrismaClientKnownRequestError && err.code === 'P2002' && Array.isArray(err.meta?.target)) {
+    if (err instanceof Prisma.PrismaClientKnownRequestError &&
+      err.code === 'P2002' && Array.isArray(err.meta?.target)) {
       // Catch unique constraint error
       const target = err.meta?.target;
       if (target.includes('username')) {

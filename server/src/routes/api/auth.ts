@@ -1,22 +1,23 @@
 import { login, refreshToken, signup } from '@/controllers/auth.js';
+import { saveUserHook } from '@/hooks/user.js';
 import { FastifyInstance } from 'fastify';
 
 const authRoutes = (app: FastifyInstance) => {
   app.post('/signup', {
-    handler: signup,
     schema: {
       body: { $ref: 'SignupRequestSchema#' },
       response: {
-        200: { $ref: 'UserResponseSchema#' },
+        201: { $ref: 'UserResponseSchema#' },
         400: { $ref: 'ErrorResponseSchema#' },
         409: { $ref: 'ErrorResponseSchema#' },
         500: { $ref: 'ErrorResponseSchema#' }
       }
-    }
+    },
+    preValidation: saveUserHook,
+    handler: signup
   });
 
   app.post('/login', {
-    handler: login,
     schema: {
       body: { $ref: 'LoginRequestSchema#' },
       response: {
@@ -25,18 +26,19 @@ const authRoutes = (app: FastifyInstance) => {
         401: { $ref: 'ErrorResponseSchema#' },
         500: { $ref: 'ErrorResponseSchema#' }
       }
-    }
+    },
+    handler: login
   });
 
   app.post('/refresh-token', {
-    handler: refreshToken,
     schema: {
       response: {
         200: { $ref: 'RefreshTokenResponseSchema#' },
         401: { $ref: 'ErrorResponseSchema#' },
         500: { $ref: 'ErrorResponseSchema#' }
       }
-    }
+    },
+    handler: refreshToken
   });
 };
 

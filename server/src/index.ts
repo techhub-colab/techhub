@@ -7,7 +7,9 @@ import Fastify from 'fastify';
 const isProduction = process.env.NODE_ENV === 'production';
 
 const app = Fastify({
-  logger: true
+  logger: {
+    level: isProduction ? 'info' : 'debug'
+  }
 });
 
 try {
