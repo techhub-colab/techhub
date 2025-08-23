@@ -5,8 +5,7 @@ export const ErrorResponseSchema = {
   type: 'object',
   additionalProperties: false,
   properties: {
-    message: { type: 'string' },
-    type: { type: 'string' }
+    message: { type: 'string' }
   },
   required: ['message']
 } as const;

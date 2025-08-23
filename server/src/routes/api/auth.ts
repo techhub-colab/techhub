@@ -5,12 +5,13 @@ import { FastifyInstance } from 'fastify';
 const authRoutes = (app: FastifyInstance) => {
   app.post('/signup', {
     schema: {
+      tags: ['Auth'],
       body: { $ref: 'SignupRequestSchema#' },
       response: {
-        201: { $ref: 'UserResponseSchema#' },
-        400: { $ref: 'ErrorResponseSchema#' },
-        409: { $ref: 'ErrorResponseSchema#' },
-        500: { $ref: 'ErrorResponseSchema#' }
+        201: { $ref: 'UserResponseSchema#', description: 'User created on successful signup' },
+        400: { $ref: 'ErrorResponseSchema#', description: 'Ill-formatted input (username, email, etc.)' },
+        409: { $ref: 'ErrorResponseSchema#', description: 'Username or email already taken' },
+        500: { $ref: 'ErrorResponseSchema#', description: 'Unexpected error' }
       }
     },
     preValidation: saveUserHook,
@@ -19,12 +20,12 @@ const authRoutes = (app: FastifyInstance) => {
 
   app.post('/login', {
     schema: {
+      tags: ['Auth'],
       body: { $ref: 'LoginRequestSchema#' },
       response: {
-        200: { $ref: 'LoginResponseSchema#' },
-        400: { $ref: 'ErrorResponseSchema#' },
-        401: { $ref: 'ErrorResponseSchema#' },
-        500: { $ref: 'ErrorResponseSchema#' }
+        200: { $ref: 'LoginResponseSchema#', description: 'Success' },
+        401: { $ref: 'ErrorResponseSchema#', description: 'Invalid credentials' },
+        500: { $ref: 'ErrorResponseSchema#', description: 'Unexpected error' }
       }
     },
     handler: login
@@ -32,10 +33,11 @@ const authRoutes = (app: FastifyInstance) => {
 
   app.post('/refresh-token', {
     schema: {
+      tags: ['Auth'],
       response: {
-        200: { $ref: 'RefreshTokenResponseSchema#' },
-        401: { $ref: 'ErrorResponseSchema#' },
-        500: { $ref: 'ErrorResponseSchema#' }
+        200: { $ref: 'RefreshTokenResponseSchema#', description: 'Success' },
+        401: { $ref: 'ErrorResponseSchema#', description: 'Session expired or invalid refresh token' },
+        500: { $ref: 'ErrorResponseSchema#', description: 'Unexpected error' }
       }
     },
     handler: refreshToken

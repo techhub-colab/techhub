@@ -1,4 +1,4 @@
-import { REFRESH_TOKEN_NAME, REFRESH_TOKEN_PATH } from '@/utils/constants.js';
+import { REFRESH_TOKEN_NAME, REFRESH_TOKEN_PATH } from '@/config/constants.js';
 import { FastifyReply, FastifyRequest } from 'fastify';
 import jwt from 'jsonwebtoken';
 
