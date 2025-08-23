@@ -80,7 +80,7 @@ function CherryEditor() {
       cherryInstance.current = new Cherry(cherryConfig);
       cherryInstance.current.on('afterChange', handleContentChange);
     }
-  }, []);
+  }, [handleContentChange]);
 
   return (
     <>

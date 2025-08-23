@@ -28,7 +28,7 @@ export default function About({ loaderData }: Route.ComponentProps) {
     markdownToHtml(markdown)
       .then(html => setContent(html))
       .catch(error => console.error(error));
-  }, []);
+  }, [markdown]);
 
   return (
     <div
