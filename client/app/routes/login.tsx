@@ -1,6 +1,8 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useEffect } from 'react';
+import axios from 'axios';
 import { useForm } from 'react-hook-form';
+import { useLocation, useNavigate } from 'react-router';
+import { toast } from 'sonner';
 import { Button } from '~/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
 import { Input, PasswordInput } from '~/components/ui/input';
@@ -10,7 +12,10 @@ import { login } from '~/services/api/auth';
 import type { LoginRequest } from '~/types/auth';
 
 export default function Login() {
-  const { setAuth, user } = useAuth();
+  const { setAuth } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const form = useForm<LoginRequest>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
@@ -23,14 +28,21 @@ export default function Login() {
     try {
       const { accessToken, user } = await login(values);
       setAuth(accessToken, user);
+      // Navigate to the previous location before the user logged in
+      navigate(location.state?.from || '/', { replace: true });
+      if (location.state?.redirect === '/blogs/create') {
+        window.open(location.state.redirect, '_blank');
+      }
+
     } catch (err) {
-      console.error(err);
+      if (axios.isAxiosError(err) && err.response?.status === 401) {
+        toast.error('Wrong username or password');
+      } else {
+        toast.error('Unexpected error. Please try again later.');
+        console.error(err);
+      }
     }
   };
-
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
 
   return (
     <div className="h-[480px] flex items-center justify-center">

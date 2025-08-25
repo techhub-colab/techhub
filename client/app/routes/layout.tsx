@@ -7,6 +7,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '~/components/ui/navigation-menu';
+import { Toaster } from '~/components/ui/sonner';
 import { AuthProvider } from '~/contexts/auth';
 
 export default function Layout() {
@@ -68,6 +69,7 @@ export default function Layout() {
       </main>
       <footer className="flex flex-col items-center">
       </footer>
+      <Toaster duration={500000} />
     </AuthProvider>
   );
 }
