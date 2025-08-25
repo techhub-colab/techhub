@@ -1,6 +1,6 @@
 import DOMPurify from 'dompurify';
 import MarkdownIt from 'markdown-it';
-import { isServer } from '~/utils/ssr-util';
+import { isServer } from '~/utils/ssr';
 
 const markdownToHtml = async (markdown) => {
   if (isServer()) {

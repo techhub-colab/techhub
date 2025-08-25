@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { BASE_SITE_CONTENT_URL } from '~/constants';
 import aboutStyles from '~/styles/about.css?url';
 import cherryStyles from '~/styles/cherry-markdown.css?url';
-import { markdownToHtml } from '~/utils/markdown-util';
+import { markdownToHtml } from '~/utils/markdown';
 import type { Route } from './+types/about';
 import 'cherry-markdown/dist/cherry-markdown.css';
 

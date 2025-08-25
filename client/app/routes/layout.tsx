@@ -7,10 +7,11 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '~/components/ui/navigation-menu';
+import { AuthProvider } from '~/contexts/auth';
 
 export default function Layout() {
   return (
-    <>
+    <AuthProvider>
       <header className="sticky top-0 z-999">
         <NavigationMenu className="justify-between">
           <NavigationMenuList>
@@ -67,6 +68,6 @@ export default function Layout() {
       </main>
       <footer className="flex flex-col items-center">
       </footer>
-    </>
+    </AuthProvider>
   );
 }
