@@ -1,5 +1,5 @@
 import { Prisma } from '@/generated/prisma/client.js';
-import { LoginRequest, SignupRequest } from '@/schemas/auth.js';
+import type { LoginRequest, SignupRequest } from '@/schemas/auth.js';
 import {
   clearRefreshToken,
   getRefreshToken,
@@ -10,7 +10,7 @@ import {
 } from '@/utils/auth.js';
 import { comparePassword, hashPassword } from '@/utils/password.js';
 import prisma from '@/utils/prisma.js';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import type { FastifyReply, FastifyRequest } from 'fastify';
 
 export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: FastifyReply) => {
   const { username, password, email } = req.body;

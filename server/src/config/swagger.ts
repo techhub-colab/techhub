@@ -1,5 +1,5 @@
-import { FastifyDynamicSwaggerOptions } from '@fastify/swagger';
-import { FastifySwaggerUiOptions } from '@fastify/swagger-ui';
+import type { FastifyDynamicSwaggerOptions } from '@fastify/swagger';
+import type { FastifySwaggerUiOptions } from '@fastify/swagger-ui';
 
 const { PORT } = process.env;
 
@@ -23,4 +23,4 @@ export const swaggerOptions: FastifyDynamicSwaggerOptions = {
 
 export const swaggerUiOptions: FastifySwaggerUiOptions = {
   routePrefix: '/_docs'
-}
+};

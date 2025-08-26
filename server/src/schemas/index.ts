@@ -6,7 +6,7 @@ import {
 } from '@/schemas/auth.js';
 import { ErrorResponseSchema } from '@/schemas/error.js';
 import { UpdateMeRequestSchema, UserResponseSchema } from '@/schemas/user.js';
-import { FastifyInstance } from 'fastify';
+import type { FastifyInstance } from 'fastify';
 
 export const addSchemas = (app: FastifyInstance) => {
   // auth

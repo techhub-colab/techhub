@@ -7,14 +7,14 @@ const userRoutes = (app: FastifyInstance) => {
     schema: {
       tags: ['Users'],
       response: {
-        200: { $ref: 'UserResponseSchema#', message: 'Success' },
-        401: { $ref: 'ErrorResponseSchema#', message: 'Invalid access token' },
-        403: { $ref: 'ErrorResponseSchema#', message: 'Inactive user' }
+        200: { $ref: 'UserResponseSchema#', description: 'Success' },
+        401: { $ref: 'ErrorResponseSchema#', description: 'Invalid access token' },
+        403: { $ref: 'ErrorResponseSchema#', description: 'Inactive user' }
       }
     },
     preHandler: authHook,
     handler: getMe
-  })
+  });
 };
 
 export default userRoutes;
