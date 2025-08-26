@@ -33,10 +33,10 @@ function PasswordInput({ className, ...props }: React.ComponentProps<'input'>) {
       <Button
         type="button"
         variant="ghost"
-        className="absolute right-1 top-1/2 -translate-y-1/2 hover:bg-transparent"
+        className="absolute right-0.5 top-1/2 -translate-y-1/2 hover:bg-transparent"
         onClick={() => setShowPassword(!showPassword)}
       >
-        {showPassword ? <EyeOffIcon /> : <EyeIcon />}
+        {showPassword ? <EyeIcon /> : <EyeOffIcon />}
         <span className="sr-only">Toggle password visibility</span>
       </Button>
     </div>

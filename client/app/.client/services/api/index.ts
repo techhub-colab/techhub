@@ -1,9 +1,9 @@
 import axios, { type AxiosError } from 'axios';
-import { BASE_API_URL } from '~/constants';
+import { BASE_API_PATH } from '~/constants';
 import type { ErrorResponse } from '~/types/error';
 
 const api = axios.create({
-  baseURL: BASE_API_URL,
+  baseURL: BASE_API_PATH,
   headers: {
     'Content-Type': 'application/json'
   }
