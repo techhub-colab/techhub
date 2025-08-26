@@ -4,6 +4,7 @@ import { BASE_SITE_CONTENT_URL } from '~/constants';
 import aboutStyles from '~/styles/about.css?url';
 import cherryStyles from '~/styles/cherry-markdown.css?url';
 import { markdownToHtml } from '~/utils/markdown';
+import { markdownToHtmlClient } from '~/utils/markdown.client';
 import type { Route } from './+types/about';
 import 'cherry-markdown/dist/cherry-markdown.css';
 
@@ -25,8 +26,8 @@ export default function About({ loaderData }: Route.ComponentProps) {
   const [content, setContent] = useState(html);
 
   useEffect(() => {
-    markdownToHtml(markdown)
-      .then(html => setContent(html))
+    markdownToHtmlClient(markdown)
+      .then(result => setContent(result))
       .catch(error => console.error(error));
   }, [markdown]);
 

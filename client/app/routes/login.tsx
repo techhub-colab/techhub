@@ -8,7 +8,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '
 import { Input, PasswordInput } from '~/components/ui/input';
 import { useAuth } from '~/contexts/auth';
 import { loginFormSchema } from '~/schemas/auth';
-import { login } from '~/services/api/auth';
+import { login } from '~/.client/services/api/auth';
 import type { LoginRequest } from '~/types/auth';
 
 export default function Login() {

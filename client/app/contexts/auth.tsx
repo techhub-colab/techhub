@@ -1,6 +1,6 @@
 import type { AxiosError } from 'axios';
 import { createContext, useCallback, useContext, useEffect, useState } from 'react';
-import { getMe } from '~/services/api/user';
+import { getMe } from '~/.client/services/api/user';
 import type { User } from '~/types/user';
 
 type AuthContextType = {
