@@ -27,4 +27,6 @@ export const saveUserHook = async (req: FastifyRequest<{
   if (!isValidInput) {
     return res.status(400).send({ message: 'Bad request' });
   }
+
+  return;
 };

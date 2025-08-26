@@ -5,7 +5,12 @@ const globalForPrisma = global as unknown as { prisma: PrismaClient };
 
 const prisma = globalForPrisma.prisma ||
   new PrismaClient(isProduction ? undefined : {
-    log: ['query']
+    log: ['query'],
+    omit: {
+      user: {
+        password: true
+      }
+    }
   });
 
 if (!isProduction) {

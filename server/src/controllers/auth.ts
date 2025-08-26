@@ -53,7 +53,11 @@ export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: 
 export const login = async (req: FastifyRequest<{ Body: LoginRequest }>, res: FastifyReply) => {
   const { username, password } = req.body;
 
-  const user = await prisma.user.findUnique({ where: { username } });
+  const user = await prisma.user.findUnique({
+    where: { username },
+    omit: { password: false }
+  });
+
   if (!user || !user.isActive || user.username !== username) { // force case-sensitive username comparison
     return res.status(401).send({ message: 'Invalid credentials' });
   }

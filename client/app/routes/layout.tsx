@@ -69,7 +69,7 @@ export default function Layout() {
       </main>
       <footer className="flex flex-col items-center">
       </footer>
-      <Toaster duration={500000} />
+      <Toaster />
     </AuthProvider>
   );
 }
