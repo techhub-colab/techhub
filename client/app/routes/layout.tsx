@@ -19,12 +19,25 @@ type FooterData = {
   links: { [key: string]: string };
 }
 
-export async function loader({ request }: Route.LoaderArgs) {
-  const res = await axios.get<FooterData>(`${getBaseUrl(request)}/footer-data.json`);
-  return res.data;
+// Prevent loader from re-executing on route change
+export function shouldRevalidate() {
+  return false;
 }
 
-export default function Layout({ loaderData }: Route.ComponentProps) {
+export async function loader({ request }: Route.LoaderArgs) {
+  try {
+    const res = await axios.get<FooterData>(`${getBaseUrl(request)}/footer-data.json`);
+    return res.data;
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+export default function Layout({ loaderData: footerData }: Route.ComponentProps) {
+  if (!footerData) {
+    console.error('Error loading footer data');
+  }
+
   return (
     <AuthProvider>
       <header className="sticky top-0 z-999">
@@ -83,23 +96,24 @@ export default function Layout({ loaderData }: Route.ComponentProps) {
           <Outlet />
         </div>
       </main>
-      <footer className="px-12 py-6 text-center">
+      {footerData && <footer className="px-12 py-6 text-center">
         <div className="italic text-sm text-[var(--muted-foreground)]">
-          {loaderData.title}
+          {footerData.title}
         </div>
         <div className="mt-3 flex justify-center gap-6">
-          <Link to={loaderData.links['github']} target="_blank">
+          <Link to={footerData.links['github']} target="_blank">
             <GithubFilled className="text-2xl" />
           </Link>
-          <Link to={loaderData.links['linkedin']} target="_blank">
+          <Link to={footerData.links['linkedin']} target="_blank">
             <LinkedinFilled className="text-2xl" />
           </Link>
-          <Link to={loaderData.links['instagram']} target="_blank">
+          <Link to={footerData.links['instagram']} target="_blank">
             <InstagramFilled className="text-2xl" />
           </Link>
         </div>
-      </footer>
+      </footer>}
       <Toaster />
     </AuthProvider>
   );
 }
+
