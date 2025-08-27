@@ -1,4 +1,4 @@
-import { login, refreshToken, signup } from '@/controllers/auth.js';
+import { login, logout, refreshToken, signup } from '@/controllers/auth.js';
 import { saveUserHook } from '@/hooks/user.js';
 import type { FastifyInstance } from 'fastify';
 
@@ -27,6 +27,16 @@ const authRoutes = (app: FastifyInstance) => {
       }
     },
     handler: login
+  });
+
+  app.post('/logout', {
+    schema: {
+      tags: ['Auth'],
+      response: {
+        200: { $ref: 'SuccessResponseSchema#', description: 'Success' }
+      }
+    },
+    handler: logout
   });
 
   app.post('/refresh-token', {

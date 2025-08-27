@@ -28,6 +28,7 @@ export default function Login() {
     try {
       const { accessToken, user } = await login(values);
       setAuth(accessToken, user);
+      toast.success('Successfully logged in!');
       // Navigate to the previous location before the user logged in
       navigate(location.state?.from || '/', { replace: true });
       if (location.state?.redirect === '/blogs/create') {

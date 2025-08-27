@@ -82,6 +82,11 @@ export const login = async (req: FastifyRequest<{ Body: LoginRequest }>, res: Fa
   return { accessToken, user: updatedUser };
 };
 
+export const logout = async (req: FastifyRequest, res: FastifyReply) => {
+  clearRefreshToken(res);
+  return { message: 'Successfully logged out' };
+};
+
 export const refreshToken = async (req: FastifyRequest, res: FastifyReply) => {
   let refreshToken = getRefreshToken(req);
   if (!refreshToken) {

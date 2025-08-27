@@ -1,14 +1,7 @@
 import { GithubFilled, InstagramFilled, LinkedinFilled } from '@ant-design/icons';
 import axios from 'axios';
 import { Link, Outlet } from 'react-router';
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger
-} from '~/components/ui/navigation-menu';
+import Header from '~/components/layout/header';
 import { Toaster } from '~/components/ui/sonner';
 import { AuthProvider } from '~/contexts/auth';
 import { getBaseUrl } from '~/utils/url';
@@ -40,57 +33,7 @@ export default function Layout({ loaderData: footerData }: Route.ComponentProps)
 
   return (
     <AuthProvider>
-      <header className="sticky top-0 z-999">
-        <NavigationMenu className="justify-between text-base">
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/">
-                  Home
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuTrigger>Blogs</NavigationMenuTrigger>
-              <NavigationMenuContent>
-                <div className="w-[120px]">
-                  <NavigationMenuLink asChild>
-                    <Link to="/blogs/create" target="_blank">
-                      New Blog
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">
-                      My Blogs
-                    </Link>
-                  </NavigationMenuLink>
-                  <NavigationMenuLink asChild>
-                    <Link to="#">
-                      Discover
-                    </Link>
-                  </NavigationMenuLink>
-                </div>
-              </NavigationMenuContent>
-            </NavigationMenuItem>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/about">
-                  About
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-          <NavigationMenuList>
-            <NavigationMenuItem>
-              <NavigationMenuLink asChild>
-                <Link to="/login">
-                  Log In
-                </Link>
-              </NavigationMenuLink>
-            </NavigationMenuItem>
-          </NavigationMenuList>
-        </NavigationMenu>
-      </header>
+      <Header />
       <main className="flex justify-center">
         <div className="p-5 w-full lg:w-2/3">
           <Outlet />
@@ -116,4 +59,3 @@ export default function Layout({ loaderData: footerData }: Route.ComponentProps)
     </AuthProvider>
   );
 }
-

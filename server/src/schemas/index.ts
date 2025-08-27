@@ -5,6 +5,7 @@ import {
   SignupRequestSchema
 } from '@/schemas/auth.js';
 import { ErrorResponseSchema } from '@/schemas/error.js';
+import { SuccessResponseSchema } from '@/schemas/success.js';
 import { UpdateMeRequestSchema, UserResponseSchema } from '@/schemas/user.js';
 import type { FastifyInstance } from 'fastify';
 
@@ -17,6 +18,7 @@ export const addSchemas = (app: FastifyInstance) => {
   // user
   app.addSchema(UpdateMeRequestSchema);
   app.addSchema(UserResponseSchema);
-  // error
+  // success and error
+  app.addSchema(SuccessResponseSchema);
   app.addSchema(ErrorResponseSchema);
 };
