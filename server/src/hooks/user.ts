@@ -1,7 +1,7 @@
-import { SignupRequest } from '@/schemas/auth.js';
-import { UpdateMeRequest } from '@/schemas/user.js';
+import type { SignupRequest } from '@/schemas/auth.js';
+import type { UpdateMeRequest } from '@/schemas/user.js';
 import { isValidEmail, isValidPassword, isValidUsername } from '@/utils/validation.js';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import type { FastifyReply, FastifyRequest } from 'fastify';
 
 export const saveUserHook = async (req: FastifyRequest<{
   Body: SignupRequest | UpdateMeRequest
@@ -27,4 +27,6 @@ export const saveUserHook = async (req: FastifyRequest<{
   if (!isValidInput) {
     return res.status(400).send({ message: 'Bad request' });
   }
+
+  return;
 };

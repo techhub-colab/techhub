@@ -80,13 +80,13 @@ function CherryEditor() {
       cherryInstance.current = new Cherry(cherryConfig);
       cherryInstance.current.on('afterChange', handleContentChange);
     }
-  }, []);
+  }, [handleContentChange]);
 
   return (
     <>
       <div className="h-[56px] px-5 relative z-99 bg-white flex items-center gap-4">
-        <Input placeholder="Title" onChange={handleTitleChange} />
-        <Button className="px-5 rounded-full">Post</Button>
+        <Input className="text-base h-9" placeholder="Title" onChange={handleTitleChange} />
+        <Button className="px-5 rounded-full text-base">Post</Button>
       </div>
       <div id={cherryConfig.id} className="!h-[calc(100vh-56px)]" />
     </>

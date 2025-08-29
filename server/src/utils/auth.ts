@@ -1,5 +1,6 @@
-import { REFRESH_TOKEN_NAME, REFRESH_TOKEN_PATH } from '@/utils/constants.js';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import { REFRESH_TOKEN_NAME, REFRESH_TOKEN_PATH } from '@/config/constants.js';
+import type { User } from '@/generated/prisma/client.js';
+import type { FastifyReply, FastifyRequest } from 'fastify';
 import jwt from 'jsonwebtoken';
 
 const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = process.env;
@@ -48,4 +49,15 @@ export const setRefreshToken = (res: FastifyReply, refreshToken: string) => {
 
 export const clearRefreshToken = (res: FastifyReply) => {
   res.clearCookie(REFRESH_TOKEN_NAME, { path: REFRESH_TOKEN_PATH });
+};
+
+// Reject authentication of inactive users
+export const verifyUser = (req: FastifyRequest, res: FastifyReply, user: User | null) => {
+  // Unauthorize if the user is inactive or removed
+  if (!user?.isActive) {
+    clearRefreshToken(res);
+    return false;
+  }
+  req.user = user;
+  return true;
 };

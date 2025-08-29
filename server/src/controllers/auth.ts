@@ -1,5 +1,5 @@
 import { Prisma } from '@/generated/prisma/client.js';
-import { LoginRequest, SignupRequest } from '@/schemas/auth.js';
+import type { LoginRequest, SignupRequest } from '@/schemas/auth.js';
 import {
   clearRefreshToken,
   getRefreshToken,
@@ -10,7 +10,7 @@ import {
 } from '@/utils/auth.js';
 import { comparePassword, hashPassword } from '@/utils/password.js';
 import prisma from '@/utils/prisma.js';
-import { FastifyReply, FastifyRequest } from 'fastify';
+import type { FastifyReply, FastifyRequest } from 'fastify';
 
 export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: FastifyReply) => {
   const { username, password, email } = req.body;
@@ -53,7 +53,11 @@ export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: 
 export const login = async (req: FastifyRequest<{ Body: LoginRequest }>, res: FastifyReply) => {
   const { username, password } = req.body;
 
-  const user = await prisma.user.findUnique({ where: { username } });
+  const user = await prisma.user.findUnique({
+    where: { username },
+    omit: { password: false }
+  });
+
   if (!user || !user.isActive || user.username !== username) { // force case-sensitive username comparison
     return res.status(401).send({ message: 'Invalid credentials' });
   }
@@ -76,6 +80,11 @@ export const login = async (req: FastifyRequest<{ Body: LoginRequest }>, res: Fa
   setRefreshToken(res, refreshToken);
 
   return { accessToken, user: updatedUser };
+};
+
+export const logout = async (req: FastifyRequest, res: FastifyReply) => {
+  clearRefreshToken(res);
+  return { message: 'Successfully logged out' };
 };
 
 export const refreshToken = async (req: FastifyRequest, res: FastifyReply) => {

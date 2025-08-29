@@ -1,4 +1,4 @@
-import { reservedUsernames } from '@/utils/constants.js';
+import { reservedUsernames } from '@/config/constants.js';
 import validator from 'validator';
 
 /**
