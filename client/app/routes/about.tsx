@@ -1,6 +1,5 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import { BASE_SITE_CONTENT_URL } from '~/constants';
 import aboutStyles from '~/styles/about.css?url';
 import cherryStyles from '~/styles/cherry-markdown.css?url';
 import { markdownToHtml } from '~/utils/markdown';
@@ -16,7 +15,7 @@ export function links() {
 }
 
 export async function loader() {
-  const res = await axios.get<string>(`${BASE_SITE_CONTENT_URL}/about.md`);
+  const res = await axios.get<string>(`${process.env.SITE_CONTENT_URL}/about.md`);
   const html: string = await markdownToHtml(res.data);
   return { markdown: res.data, html };
 }
