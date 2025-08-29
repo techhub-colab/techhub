@@ -1,4 +1,4 @@
-import { LogOut } from 'lucide-react';
+import { LogOutIcon } from 'lucide-react';
 import { useCallback } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -86,7 +86,7 @@ export default function Header() {
               <NavigationMenuContent className="left-auto right-0">
                 <NavigationMenuLink onClick={handleLogout}>
                   <div className="flex items-center gap-1.5">
-                    <LogOut />Logout
+                    <LogOutIcon />Logout
                   </div>
                 </NavigationMenuLink>
               </NavigationMenuContent>
