@@ -53,7 +53,7 @@ export default function Login() {
             control={form.control}
             name="username"
             render={({ field }) => (
-              <FormItem className="mb-6">
+              <FormItem>
                 <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input {...field} />

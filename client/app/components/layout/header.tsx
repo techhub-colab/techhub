@@ -1,4 +1,4 @@
-import { LogOutIcon } from 'lucide-react';
+import { LogOutIcon, SettingsIcon } from 'lucide-react';
 import { useCallback } from 'react';
 import { Link, useNavigate } from 'react-router';
 import { toast } from 'sonner';
@@ -12,6 +12,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger
 } from '~/components/ui/navigation-menu';
+import { Separator } from '~/components/ui/separator';
 import { useAuth } from '~/contexts/auth';
 
 export default function Header() {
@@ -84,10 +85,14 @@ export default function Header() {
                 </div>
               </NavigationMenuTrigger>
               <NavigationMenuContent className="left-auto right-0">
-                <NavigationMenuLink onClick={handleLogout}>
-                  <div className="flex items-center gap-1.5">
-                    <LogOutIcon />Logout
-                  </div>
+                <NavigationMenuLink className="gap-1.5" asChild>
+                  <Link to="/settings/profile">
+                    <SettingsIcon />Settings
+                  </Link>
+                </NavigationMenuLink>
+                <Separator className="my-1" />
+                <NavigationMenuLink className="gap-1.5" onClick={handleLogout}>
+                  <LogOutIcon />Logout
                 </NavigationMenuLink>
               </NavigationMenuContent>
             </NavigationMenuItem>
