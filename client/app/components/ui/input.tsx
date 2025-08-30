@@ -27,13 +27,13 @@ function PasswordInput({ className, ...props }: React.ComponentProps<'input'>) {
     <div className="relative">
       <Input
         type={showPassword ? 'text' : 'password'}
-        className={cn(className)}
+        className={cn(className, 'pr-10')}
         {...props}
       />
       <Button
         type="button"
         variant="ghost"
-        className="absolute right-0.5 top-1/2 -translate-y-1/2 hover:bg-transparent"
+        className="absolute w-10 right-0.5 top-1/2 -translate-y-1/2 hover:bg-transparent"
         onClick={() => setShowPassword(!showPassword)}
       >
         {showPassword ? <EyeIcon /> : <EyeOffIcon />}

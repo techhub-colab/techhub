@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { type FieldValues, useForm, type UseFormProps } from 'react-hook-form';
 
-const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, initialValues: T) => {
+const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, initialValues?: T) => {
   const form = useForm<T>(formOptions);
   const [isEdited, setIsEdited] = useState(false);
 
