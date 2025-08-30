@@ -1,5 +1,5 @@
 import { Prisma } from '@/generated/prisma/client.js';
-import type { LoginRequest, SignupRequest } from '@/schemas/auth.js';
+import type { LoginFormValues, SignupRequest } from '@/schemas/auth.js';
 import {
   clearRefreshToken,
   getRefreshToken,
@@ -50,7 +50,7 @@ export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: 
   }
 };
 
-export const login = async (req: FastifyRequest<{ Body: LoginRequest }>, res: FastifyReply) => {
+export const login = async (req: FastifyRequest<{ Body: LoginFormValues }>, res: FastifyReply) => {
   const { username, password } = req.body;
 
   const user = await prisma.user.findUnique({

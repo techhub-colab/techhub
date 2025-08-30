@@ -3,20 +3,20 @@ import axios from 'axios';
 import { useForm } from 'react-hook-form';
 import { useLocation, useNavigate } from 'react-router';
 import { toast } from 'sonner';
+import { login } from '~/.client/services/api/auth';
 import { Button } from '~/components/ui/button';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '~/components/ui/form';
+import { Form, FormControl, FormField, FormItem, FormLabel } from '~/components/ui/form';
 import { Input, PasswordInput } from '~/components/ui/input';
 import { useAuth } from '~/contexts/auth';
 import { loginFormSchema } from '~/schemas/auth';
-import { login } from '~/.client/services/api/auth';
-import type { LoginRequest } from '~/types/auth';
+import type { LoginFormValues } from '~/types/auth';
 
 export default function Login() {
   const { setAuth } = useAuth();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const form = useForm<LoginRequest>({
+  const form = useForm<LoginFormValues>({
     resolver: zodResolver(loginFormSchema),
     defaultValues: {
       username: '',
@@ -24,7 +24,7 @@ export default function Login() {
     }
   });
 
-  const handleLogin = async (values: LoginRequest) => {
+  const handleLogin = async (values: LoginFormValues) => {
     try {
       const { accessToken, user } = await login(values);
       setAuth(accessToken, user);
@@ -53,12 +53,11 @@ export default function Login() {
             control={form.control}
             name="username"
             render={({ field }) => (
-              <FormItem>
+              <FormItem direction="column">
                 <FormLabel>Username</FormLabel>
                 <FormControl>
                   <Input {...field} />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />
@@ -66,12 +65,11 @@ export default function Login() {
             control={form.control}
             name="password"
             render={({ field }) => (
-              <FormItem className="mb-9">
+              <FormItem direction="column" className="mb-9">
                 <FormLabel>Password</FormLabel>
                 <FormControl>
                   <PasswordInput {...field} />
                 </FormControl>
-                <FormMessage />
               </FormItem>
             )}
           />

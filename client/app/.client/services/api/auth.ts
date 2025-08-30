@@ -1,8 +1,8 @@
 import api from '~/.client/services/api';
-import type { LoginRequest, LoginResponse } from '~/types/auth';
+import type { LoginFormValues, LoginResponse } from '~/types/auth';
 import type { SuccessResponse } from '~/types/success';
 
-export const login = async (credentials: LoginRequest) => {
+export const login = async (credentials: LoginFormValues) => {
   const { data } = await api.post<LoginResponse>('/auth/login', credentials);
   return data;
 };

@@ -25,7 +25,7 @@ export const LoginRequestSchema = {
   additionalProperties: false
 } as const;
 
-export type LoginRequest = FromSchema<typeof LoginRequestSchema>;
+export type LoginFormValues = FromSchema<typeof LoginRequestSchema>;
 
 export const LoginResponseSchema = {
   $id: 'LoginResponseSchema',
