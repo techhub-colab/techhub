@@ -8,7 +8,7 @@ import {
   signRefreshToken,
   verifyRefreshToken
 } from '@/utils/auth.js';
-import { comparePassword, hashPassword } from '@/utils/password.js';
+import { comparePassword } from '@/utils/password.js';
 import prisma from '@/utils/prisma.js';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
@@ -22,13 +22,8 @@ export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: 
       return res.status(403).send({ message: 'Forbidden' });
     }
 
-    const hashedPassword = await hashPassword(password);
     const user = await prisma.user.create({
-      data: {
-        username,
-        password: hashedPassword,
-        email
-      }
+      data: { username, password, email }
     });
 
     return res.status(201).send(user);
@@ -39,10 +34,16 @@ export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: 
       // Catch unique constraint error
       const target = err.meta?.target;
       if (target.includes('username')) {
-        return res.status(409).send({ message: 'Username already exists' });
+        return res.status(409).send({
+          message: 'Username already taken',
+          code: 'USERNAME_EXISTS'
+        });
       }
       if (target.includes('email')) {
-        return res.status(409).send({ message: 'Email already registered' });
+        return res.status(409).send({
+          message: 'Email already registered',
+          code: 'EMAIL_EXISTS'
+        });
       }
     }
 

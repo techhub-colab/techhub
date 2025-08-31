@@ -6,8 +6,6 @@ import type { FastifyReply, FastifyRequest } from 'fastify';
 export const saveUserHook = async (req: FastifyRequest<{
   Body: SignupRequest | UpdateMeRequest
 }>, res: FastifyReply) => {
-  // Ensure the user email is always saved in lower case
-  req.body.email = req.body.email?.toLowerCase();
   const { username, password, email } = req.body;
 
   // Validate fields format

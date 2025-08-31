@@ -5,7 +5,11 @@ export const ErrorResponseSchema = {
   type: 'object',
   additionalProperties: false,
   properties: {
-    message: { type: 'string' }
+    message: { type: 'string' },
+    code: {
+      type: 'string',
+      enum: ['USERNAME_EXISTS', 'EMAIL_EXISTS']
+    }
   },
   required: ['message']
 } as const;

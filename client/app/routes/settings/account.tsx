@@ -1,14 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMemo } from 'react';
-import { z } from 'zod';
 import { Button } from '~/components/ui/button';
 import { Form, FormControl, FormField, FormItem, FormLabel } from '~/components/ui/form';
 import { Input, PasswordInput } from '~/components/ui/input';
 import { useAuth } from '~/contexts/auth';
 import useSettingsForm from '~/routes/settings/use-settings-form';
-import { personalDetailsSchema } from '~/schemas/settings';
-import type { PersonalDetailsFormValues } from '~/types/settings';
-import { isValidPassword } from '~/utils/validation';
+import { personalDetailsSchema, resetPasswordSchema } from '~/schemas/settings';
+import type { PersonalDetailsFormValues, ResetPasswordFormValues } from '~/types/settings';
 
 function PersonalDetails() {
   const { user } = useAuth();
@@ -17,7 +15,7 @@ function PersonalDetails() {
     email: user?.email ?? ''
   }), [user?.email]);
 
-  const { form, isEdited, resetForm, handleSubmit } = useSettingsForm({
+  const { form, isEdited, resetForm, handleSubmit } = useSettingsForm<PersonalDetailsFormValues>({
     resolver: zodResolver(personalDetailsSchema),
     defaultValues: initialValues
   }, initialValues);
@@ -50,18 +48,7 @@ function PersonalDetails() {
 }
 
 function ResetPassword() {
-  const resetPasswordSchema = z.object({
-    password: z.string()
-      .min(8, { error: 'Password must be at least 8 characters long' })
-      .max(30, { error: 'Password cannot be longer than 30 characters' })
-      .refine(isValidPassword, { error: 'New password contains illegal characters' }),
-    confirmPassword: z.string().min(1, { error: 'Please confirm your password!' })
-  }).refine((values) => values.password === values.confirmPassword, {
-    error: 'Passwords do not match!',
-    path: ['confirmPassword']
-  });
-
-  const { form, isEdited, resetForm, handleSubmit } = useSettingsForm({
+  const { form, isEdited, resetForm, handleSubmit } = useSettingsForm<ResetPasswordFormValues>({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       password: '',

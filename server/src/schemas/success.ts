@@ -10,4 +10,4 @@ export const SuccessResponseSchema = {
   required: ['message']
 } as const;
 
-export type ErrorResponse = FromSchema<typeof SuccessResponseSchema>;
+export type SuccessResponse = FromSchema<typeof SuccessResponseSchema>;

@@ -9,7 +9,7 @@ const authRoutes = (app: FastifyInstance) => {
       body: { $ref: 'SignupRequestSchema#' },
       response: {
         201: { $ref: 'UserResponseSchema#', description: 'User created on successful signup' },
-        400: { $ref: 'ErrorResponseSchema#', description: 'Ill-formatted input (username, email, etc.)' },
+        400: { $ref: 'ErrorResponseSchema#', description: 'Invalid input (username, email, etc.)' },
         409: { $ref: 'ErrorResponseSchema#', description: 'Username or email already taken' }
       }
     },
