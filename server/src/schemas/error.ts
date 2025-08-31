@@ -8,7 +8,7 @@ export const ErrorResponseSchema = {
     message: { type: 'string' },
     code: {
       type: 'string',
-      enum: ['USERNAME_EXISTS', 'EMAIL_EXISTS']
+      enum: ['INACTIVE_USER', 'USERNAME_EXISTS', 'EMAIL_EXISTS']
     }
   },
   required: ['message']

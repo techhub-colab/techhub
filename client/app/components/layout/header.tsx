@@ -43,7 +43,7 @@ export default function Header() {
           </NavigationMenuItem>
           <NavigationMenuItem>
             <NavigationMenuTrigger>
-              <div>Blogs</div>
+              Blogs
             </NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className="w-[120px]">
@@ -77,12 +77,10 @@ export default function Header() {
           <NavigationMenuList>
             <NavigationMenuItem>
               <NavigationMenuTrigger asChild>
-                <div>
-                  <Avatar className="cursor-pointer transition-opacity duration-300 hover:opacity-70">
-                    <AvatarImage src="https://github.com/shadcn.png" alt="avatar" />
-                    <AvatarFallback>{user?.username.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                </div>
+                <Avatar className="cursor-pointer transition-opacity duration-300 hover:opacity-70">
+                  <AvatarImage src="https://github.com/shadcn.png" alt="avatar" />
+                  <AvatarFallback>{user?.username.charAt(0)}</AvatarFallback>
+                </Avatar>
               </NavigationMenuTrigger>
               <NavigationMenuContent className="left-auto right-0">
                 <NavigationMenuLink className="gap-1.5" asChild>

@@ -1,4 +1,4 @@
 export type ErrorResponse = {
   message: string;
-  code?: 'USERNAME_EXISTS' | 'EMAIL_EXISTS'
+  code?: 'INACTIVE_USER' | 'USERNAME_EXISTS' | 'EMAIL_EXISTS'
 }

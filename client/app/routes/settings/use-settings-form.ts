@@ -4,6 +4,7 @@ import { type FieldValues, useForm, type UseFormProps } from 'react-hook-form';
 import { toast } from 'sonner';
 import { updateMe } from '~/.client/services/api/user';
 import { useAuth } from '~/contexts/auth';
+import useApiErrorHandler from '~/hooks/use-api-error-handler';
 import type { ErrorResponse } from '~/types/error';
 import type { PersonalDetailsFormValues, ResetPasswordFormValues } from '~/types/settings';
 
@@ -11,6 +12,7 @@ const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, in
   const form = useForm<T>(formOptions);
   const { reloadUser } = useAuth();
   const [isEdited, setIsEdited] = useState(false);
+  const handleApiError = useApiErrorHandler();
 
   const resetForm = useCallback(() => {
     form.reset(initialValues);
@@ -31,10 +33,10 @@ const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, in
           toast.error('Email already registered');
         }
       } else {
-        // TODO: Handle auth error
+        handleApiError(err);
       }
     }
-  }, [reloadUser]);
+  }, [handleApiError, reloadUser]);
 
   useEffect(() => {
     resetForm();

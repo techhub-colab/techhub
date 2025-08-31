@@ -23,7 +23,7 @@ export const authHook = async (req: FastifyRequest, res: FastifyReply) => {
 
   const user = await prisma.user.findUnique({ where: { id: jwtClaims.userId } });
   if (!verifyUser(req, res, user)) {
-    return res.status(403).send({ message: 'Forbidden' });
+    return res.status(403).send({ message: 'Inactive user', code: 'INACTIVE_USER' });
   }
 
   return;
