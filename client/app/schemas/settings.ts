@@ -1,6 +1,10 @@
 import { z } from 'zod';
 import { isValidPassword } from '~/utils/validation';
 
+export const profileSchema = z.object({
+  bio: z.string().max(280)
+});
+
 export const personalDetailsSchema = z.object({
   email: z.email({ error: 'Invalid email address!' })
 });
@@ -14,4 +18,4 @@ export const resetPasswordSchema = z.object({
 }).refine((values) => values.password === values.confirmPassword, {
   error: 'Passwords do not match!',
   path: ['confirmPassword']
-});
+}).transform(({ password }) => ({ password })); // only submit the password field

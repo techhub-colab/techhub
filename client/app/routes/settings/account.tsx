@@ -6,7 +6,7 @@ import { Input, PasswordInput } from '~/components/ui/input';
 import { useAuth } from '~/contexts/auth';
 import useSettingsForm from '~/routes/settings/use-settings-form';
 import { personalDetailsSchema, resetPasswordSchema } from '~/schemas/settings';
-import type { PersonalDetailsFormValues, ResetPasswordFormValues } from '~/types/settings';
+import type { PersonalDetailsFormValues, ResetPasswordFormInput, ResetPasswordFormOutput } from '~/types/settings';
 
 function PersonalDetails() {
   const { user } = useAuth();
@@ -48,7 +48,10 @@ function PersonalDetails() {
 }
 
 function ResetPassword() {
-  const { form, isEdited, resetForm, handleSubmit } = useSettingsForm<ResetPasswordFormValues>({
+  const { form, isEdited, resetForm, handleSubmit } = useSettingsForm<
+    ResetPasswordFormInput,
+    ResetPasswordFormOutput
+  >({
     resolver: zodResolver(resetPasswordSchema),
     defaultValues: {
       password: '',

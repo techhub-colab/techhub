@@ -6,10 +6,13 @@ import { updateMe } from '~/.client/services/api/user';
 import { useAuth } from '~/contexts/auth';
 import useApiErrorHandler from '~/hooks/use-api-error-handler';
 import type { ErrorResponse } from '~/types/error';
-import type { PersonalDetailsFormValues, ResetPasswordFormValues } from '~/types/settings';
+import type { User } from '~/types/user';
 
-const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, initialValues?: T) => {
-  const form = useForm<T>(formOptions);
+const useSettingsForm = <TFieldValues extends FieldValues, TTransformedValues extends FieldValues = TFieldValues>(
+  formOptions: UseFormProps<TFieldValues, unknown, TTransformedValues>,
+  initialValues?: TFieldValues
+) => {
+  const form = useForm<TFieldValues, unknown, TTransformedValues>(formOptions);
   const { reloadUser } = useAuth();
   const [isEdited, setIsEdited] = useState(false);
   const handleApiError = useApiErrorHandler();
@@ -19,11 +22,11 @@ const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, in
     setIsEdited(false);
   }, [form, initialValues]);
 
-  const handleSubmit = useCallback(async (values: PersonalDetailsFormValues | ResetPasswordFormValues) => {
+  const handleSubmit = useCallback(async (values: Partial<User>) => {
     try {
       const updatedUser = await updateMe(values);
       reloadUser(updatedUser);
-      setIsEdited(false);
+      resetForm();
       toast.success('Update saved!');
 
     } catch (err) {
@@ -36,8 +39,9 @@ const useSettingsForm = <T extends FieldValues>(formOptions: UseFormProps<T>, in
         handleApiError(err);
       }
     }
-  }, [handleApiError, reloadUser]);
+  }, [handleApiError, reloadUser, resetForm]);
 
+  // Asynchronously load initial form values
   useEffect(() => {
     resetForm();
   }, [resetForm]);

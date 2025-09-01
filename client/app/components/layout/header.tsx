@@ -27,7 +27,7 @@ export default function Header() {
     }
     clearAuth();
     navigate('/');
-    toast.success('You have been logged out');
+    toast.info('You have been logged out');
   }, [clearAuth, navigate]);
 
   return (

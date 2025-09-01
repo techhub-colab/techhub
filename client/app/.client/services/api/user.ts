@@ -1,5 +1,4 @@
 import api from '~/.client/services/api';
-import type { PersonalDetailsFormValues, ResetPasswordFormValues } from '~/types/settings';
 import type { User } from '~/types/user';
 
 export const getMe = async () => {
@@ -7,7 +6,7 @@ export const getMe = async () => {
   return user;
 };
 
-export const updateMe = async (values: PersonalDetailsFormValues | ResetPasswordFormValues) => {
+export const updateMe = async (values: Partial<User>) => {
   const { data: updatedUser } = await api.patch<User>('/users/me', values);
   return updatedUser;
 };
