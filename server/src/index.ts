@@ -29,7 +29,7 @@ addSchemas(app);
 app.setErrorHandler(appErrorHandler);
 app.register(apiRoutes, { prefix: '/api' });
 
-app.listen({ port: Number(PORT) || 3000 }, (err, _) => {
+app.listen({ port: Number(PORT) || 3006 }, (err, _) => {
   if (err) {
     app.log.error(err);
     process.exit(1);
