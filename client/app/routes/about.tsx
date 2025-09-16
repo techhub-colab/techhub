@@ -15,7 +15,7 @@ export function links() {
 }
 
 export async function loader() {
-  const res = await axios.get<string>(`${process.env.SITE_CONTENT_URL}/about.md`);
+  const res = await axios.get<string>(`${import.meta.env.VITE_SITE_CONTENT_URL}/about.md`);
   const html: string = await markdownToHtml(res.data);
   return { markdown: res.data, html };
 }

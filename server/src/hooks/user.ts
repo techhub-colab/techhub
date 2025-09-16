@@ -1,7 +1,7 @@
 import type { SignupRequest } from '@/schemas/auth.js';
 import type { UpdateMeRequest } from '@/schemas/user.js';
-import { isValidEmail, isValidPassword, isValidUsername } from '@/utils/validation.js';
 import type { FastifyReply, FastifyRequest } from 'fastify';
+import { isValidEmail, isValidPassword, isValidUsername } from 'techhub-shared/utils/validation';
 
 export const saveUserHook = async (req: FastifyRequest<{
   Body: SignupRequest | UpdateMeRequest

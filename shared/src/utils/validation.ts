@@ -1,5 +1,16 @@
-import { reservedUsernames } from '@/config/constants.js';
 import validator from 'validator';
+
+const reservedUsernames = new Set([
+  // website page names
+  'about',
+  'login',
+  'contact',
+  'blogs',
+  'admin',
+  // api names
+  'api',
+  'me'
+]);
 
 /**
  * The provided username must:

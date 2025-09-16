@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "react-router dev",
     "build": "react-router build",
-    "start": "react-router-serve ./build/server/index.js",
+    "start": "PORT=5173 react-router-serve ./build/server/index.js",
     "typecheck": "react-router typegen && tsc",
     "lint": "eslint ."
   },
@@ -39,6 +39,7 @@
     "react-router": "^7.7.1",
     "sonner": "^2.0.7",
     "tailwind-merge": "^3.3.1",
+    "techhub-shared": "^1.0.0",
     "zod": "^4.1.1"
   },
   "devDependencies": {
@@ -50,7 +51,6 @@
     "@types/markdown-it": "^14.1.2",
     "@types/react": "^19.1.2",
     "@types/react-dom": "^19.1.2",
-    "cross-env": "^7.0.3",
     "eslint": "^9.34.0",
     "eslint-plugin-react": "^7.37.5",
     "eslint-plugin-react-hooks": "^5.2.0",

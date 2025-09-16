@@ -1,0 +1,35 @@
+{
+  "name": "techhub-shared",
+  "version": "1.0.0",
+  "description": "Shared modules and functions",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "production": "./dist/index.js",
+      "default": "./src/index.ts"
+    },
+    "./utils/*": {
+      "production": "./dist/utils/*.js",
+      "default": "./src/utils/*.ts"
+    }
+  },
+  "scripts": {
+    "build:prisma": "prisma generate",
+    "build:ts": "tsc && tsc-alias",
+    "build": "npm run build:prisma && npm run build:ts"
+  },
+  "dependencies": {
+    "@prisma/client": "^6.16.1",
+    "bcryptjs": "^3.0.2",
+    "dotenv": "^17.2.2"
+  },
+  "devDependencies": {
+    "@types/node": "^24.3.0",
+    "json-schema-to-ts": "^3.1.1",
+    "prisma": "^6.16.1",
+    "tsc-alias": "^1.8.16",
+    "tsx": "^4.20.4",
+    "typescript": "^5.5.3"
+  }
+}

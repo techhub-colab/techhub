@@ -1,8 +1,6 @@
 import type { UpdateMeRequest } from '@/schemas/user.js';
-import prisma from '@/utils/prisma.js';
-import { isValidPassword } from '@/utils/validation.js';
-import { Prisma } from '@prisma/client';
 import type { FastifyReply, FastifyRequest } from 'fastify';
+import prisma, { Prisma } from 'techhub-shared/utils/prisma';
 
 export const getMe = async (req: FastifyRequest) => {
   return req.user;
@@ -12,11 +10,6 @@ export const updateMe = async (req: FastifyRequest<{ Body: UpdateMeRequest }>, r
   // Temporarily disable Visitor from changing password
   if (req.body.password && req.body.username === 'Visitor') {
     return res.status(403).send({ message: 'Forbidden' });
-  }
-
-  // Validate password
-  if (req.body.password && !isValidPassword(req.body.password)) {
-    return res.status(400).send({ message: 'Invalid password' });
   }
 
   try {

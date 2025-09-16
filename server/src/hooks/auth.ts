@@ -1,7 +1,7 @@
 import { getAccessToken, verifyAccessToken, verifyUser } from '@/utils/auth.js';
-import prisma from '@/utils/prisma.js';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import jwt from 'jsonwebtoken';
+import prisma from 'techhub-shared/utils/prisma';
 
 export const authHook = async (req: FastifyRequest, res: FastifyReply) => {
   const accessToken = getAccessToken(req);

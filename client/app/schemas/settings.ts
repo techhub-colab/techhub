@@ -1,5 +1,5 @@
+import { isValidPassword } from 'techhub-shared/utils/validation';
 import { z } from 'zod';
-import { isValidPassword } from '~/utils/validation';
 
 export const profileSchema = z.object({
   bio: z.string().max(280)
