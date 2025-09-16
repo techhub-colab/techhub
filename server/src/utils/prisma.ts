@@ -1,4 +1,4 @@
-import { Prisma, PrismaClient } from '@/generated/prisma/client.js';
+import { Prisma, PrismaClient } from '@prisma/client';
 import { hashPassword } from '@/utils/password.js';
 
 const isProduction = process.env.NODE_ENV === 'production';

@@ -1,7 +1,7 @@
-import { Prisma } from '@/generated/prisma/client.js';
 import type { UpdateMeRequest } from '@/schemas/user.js';
 import prisma from '@/utils/prisma.js';
 import { isValidPassword } from '@/utils/validation.js';
+import { Prisma } from '@prisma/client';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 
 export const getMe = async (req: FastifyRequest) => {
