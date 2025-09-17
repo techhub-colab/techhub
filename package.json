@@ -1,9 +1,9 @@
 {
   "name": "techhub",
   "private": true,
-  "workspaces": [
-    "client",
-    "server",
-    "shared"
-  ]
+  "devDependencies": {
+    "tsc-alias": "^1.8.16",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.40.0"
+  }
 }
