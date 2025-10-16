@@ -7,9 +7,10 @@ import {
   signRefreshToken,
   verifyRefreshToken
 } from '@/utils/auth.js';
+import { Prisma } from '@prisma/client';
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import { comparePassword } from 'techhub-shared/utils/password';
-import prisma, { Prisma } from 'techhub-shared/utils/prisma';
+import { comparePassword } from '@/utils/password.js';
+import prisma from '@/utils/prisma.js';
 
 export const signup = async (req: FastifyRequest<{ Body: SignupRequest }>, res: FastifyReply) => {
   const { username, password, email } = req.body;

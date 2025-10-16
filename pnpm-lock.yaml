@@ -77,6 +77,9 @@ importers:
       dompurify:
         specifier: ^3.2.6
         version: 3.2.6
+      dotenv:
+        specifier: ^17.2.2
+        version: 17.2.2
       isbot:
         specifier: ^5.1.27
         version: 5.1.30
@@ -110,9 +113,6 @@ importers:
       tailwind-merge:
         specifier: ^3.3.1
         version: 3.3.1
-      techhub-shared:
-        specifier: workspace:*
-        version: link:../shared
       zod:
         specifier: ^4.1.1
         version: 4.1.9
@@ -180,6 +180,12 @@ importers:
       '@fastify/swagger-ui':
         specifier: ^5.2.3
         version: 5.2.3
+      '@prisma/client':
+        specifier: ^6.16.2
+        version: 6.16.2(prisma@6.16.2(typescript@5.9.2))(typescript@5.9.2)
+      bcryptjs:
+        specifier: ^3.0.2
+        version: 3.0.2
       dotenv:
         specifier: ^17.2.2
         version: 17.2.2
@@ -189,38 +195,13 @@ importers:
       jsonwebtoken:
         specifier: ^9.0.2
         version: 9.0.2
-      techhub-shared:
-        specifier: workspace:*
-        version: link:../shared
-    devDependencies:
-      '@types/jsonwebtoken':
-        specifier: ^9.0.10
-        version: 9.0.10
-      '@types/node':
-        specifier: ^24.3.0
-        version: 24.5.1
-      json-schema-to-ts:
-        specifier: ^3.1.1
-        version: 3.1.1
-      tsx:
-        specifier: ^4.20.4
-        version: 4.20.5
-
-  shared:
-    dependencies:
-      '@prisma/client':
-        specifier: ^6.16.1
-        version: 6.16.2(prisma@6.16.2(typescript@5.9.2))(typescript@5.9.2)
-      bcryptjs:
-        specifier: ^3.0.2
-        version: 3.0.2
-      dotenv:
-        specifier: ^17.2.2
-        version: 17.2.2
       validator:
         specifier: ^13.15.15
         version: 13.15.15
     devDependencies:
+      '@types/jsonwebtoken':
+        specifier: ^9.0.10
+        version: 9.0.10
       '@types/node':
         specifier: ^24.3.0
         version: 24.5.1
@@ -231,8 +212,11 @@ importers:
         specifier: ^3.1.1
         version: 3.1.1
       prisma:
-        specifier: ^6.16.1
+        specifier: ^6.16.2
         version: 6.16.2(typescript@5.9.2)
+      tsx:
+        specifier: ^4.20.4
+        version: 4.20.5
 
 packages:
 

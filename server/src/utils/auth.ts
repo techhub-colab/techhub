@@ -1,7 +1,7 @@
 import { REFRESH_TOKEN_NAME, REFRESH_TOKEN_PATH } from '@/config/constants.js';
+import type { User } from '@prisma/client';
 import type { FastifyReply, FastifyRequest } from 'fastify';
 import jwt from 'jsonwebtoken';
-import type { User } from 'techhub-shared/utils/prisma';
 
 const { ACCESS_TOKEN_SECRET, REFRESH_TOKEN_SECRET } = process.env;
 

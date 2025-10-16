@@ -1,6 +1,7 @@
 import type { UpdateMeRequest } from '@/schemas/user.js';
+import { Prisma } from '@prisma/client';
 import type { FastifyReply, FastifyRequest } from 'fastify';
-import prisma, { Prisma } from 'techhub-shared/utils/prisma';
+import prisma from '@/utils/prisma.js';
 
 export const getMe = async (req: FastifyRequest) => {
   return req.user;

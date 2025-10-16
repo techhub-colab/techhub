@@ -1,5 +1,5 @@
+import { hashPassword } from '@/utils/password.js';
 import { Prisma, PrismaClient } from '@prisma/client';
-import { hashPassword } from './password.js';
 
 const isProduction = process.env.NODE_ENV === 'production';
 const globalForPrisma = global as unknown as { prisma: PrismaClient };
@@ -47,4 +47,3 @@ if (!isProduction) {
 }
 
 export default prisma;
-export * from '@prisma/client';
